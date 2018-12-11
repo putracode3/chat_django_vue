@@ -91,14 +91,14 @@ export default {
 
     signIn () {
       const credentials = {username: this.username, password: this.password}
-
       $.ajax({
         url: 'http://localhost:8000/auth/token/create/',
         type: 'post',
         data: credentials,
         success: function (datares) {
           sessionStorage.setItem('authToken', datares.auth_token)
-          sessionStorage.setItem('username', this.username)
+          sessionStorage.setItem('username', credentials.username)
+          // console.log(sessionStorage.getItem('username'))
           this.$router.push('/chats')
         },
         fail: function (xhr, textStatus, errorThrown) {
